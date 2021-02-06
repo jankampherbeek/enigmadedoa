@@ -17,7 +17,7 @@ class StartEnigma: Application() {
     }
 
     override fun start(primaryStage: Stage) {
-        Injector.injectDashboard().showDashboard()
+        Injector.injectDashboard().show()
     }
 
 }

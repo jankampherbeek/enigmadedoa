@@ -8,6 +8,8 @@
 
 package com.radixpro.enigma.dedoa.ui
 
+import javafx.application.Platform
+import javafx.event.EventHandler
 import javafx.geometry.Pos
 import javafx.scene.Scene
 import javafx.scene.control.Button
@@ -23,7 +25,10 @@ import javafx.stage.Modality
 import javafx.stage.Stage
 
 
-class Dashboard {
+class Dashboard(private val calculationScreen: CalculationScreen,
+                private val comparisonScreen: ComparisonScreen,
+                private val formulaeScreen: FormulaeScreen,
+                private val ephemeridesScreen: EphemeridesScreen) {
 
     // texts
     private lateinit var txtBtnCalc: String
@@ -55,13 +60,13 @@ class Dashboard {
 
 
     // general
-    private val height = 500.0
+    private val height = 380.0
     private val width = 600.0
     private val GAP = 6.0
     private val btnWidth = 200.0
     private lateinit var stage: Stage
 
-    fun showDashboard() {
+    fun show() {
         initialize()
         stage = Stage()
         stage.minHeight = height
@@ -98,13 +103,19 @@ class Dashboard {
 
     private fun defineButtons() {
         btnCalc = ButtonBuilder(txtBtnCalc).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
-        btnCompare = ButtonBuilder(txtBtnCompare).setDisabled(true).setFocusTraversable(false).setPrefWidth(btnWidth).build()
-        btnFormulae = ButtonBuilder(txtBtnFormulae).setDisabled(true).setFocusTraversable(false).setPrefWidth(btnWidth).build()
-        btnEphemeris = ButtonBuilder(txtBtnEphemeris).setDisabled(true).setFocusTraversable(false).setPrefWidth(btnWidth).build()
+        btnCompare = ButtonBuilder(txtBtnCompare).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
+        btnFormulae = ButtonBuilder(txtBtnFormulae).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
+        btnEphemeris = ButtonBuilder(txtBtnEphemeris).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
         btnExit = ButtonBuilder(txtBtnExit).setDisabled(false).setFocusTraversable(true).build()
         btnHelp = ButtonBuilder(txtBtnHelp).setDisabled(false).setFocusTraversable(true).build()
         btnLanguage = ButtonBuilder(txtBtnLanguage).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
-        // TODO actions for buttons
+        btnLanguage.onAction = EventHandler { onLanguage() }
+        btnExit.onAction = EventHandler { onExit() }
+        btnHelp.onAction = EventHandler { onHelp() }
+        btnCalc.onAction = EventHandler { onCalculate()}
+        btnCompare.onAction = EventHandler { onCompare() }
+        btnFormulae.onAction = EventHandler { onFormulae() }
+        btnEphemeris.onAction = EventHandler { onEphemerides() }
     }
 
 
@@ -167,5 +178,37 @@ class Dashboard {
     private fun createBtnBar(): ButtonBar {
         return ButtonBarBuilder().setButtons(arrayOf(btnLanguage, btnHelp, btnExit)).build()
     }
+
+    private fun onCalculate() {
+        calculationScreen.show()
+    }
+
+    private fun onCompare() {
+        comparisonScreen.show()
+    }
+
+    private fun onFormulae() {
+        formulaeScreen.show()
+    }
+
+    private fun onEphemerides() {
+        ephemeridesScreen.show()
+    }
+
+    private fun onLanguage() {
+        stage.close()
+        Rosetta.changeLanguage()
+        show()
+    }
+
+    private fun onHelp() {
+        Help(Rosetta.getHelpText("help.dashboard.title"), Rosetta.getHelpText("help.dashboard.content")).showContent()
+    }
+
+    private fun onExit() {
+        Platform.exit()
+    }
+
+
 
 }
