@@ -2,6 +2,7 @@ package com.radixpro.enigma.dedoa.ui
 
 import javafx.stage.Modality
 import javafx.stage.Stage
+import com.radixpro.enigma.libfe.texts.Rosetta
 
 class ComparisonScreen {
 

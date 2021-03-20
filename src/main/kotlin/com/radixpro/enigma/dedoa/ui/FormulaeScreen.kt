@@ -1,5 +1,6 @@
 package com.radixpro.enigma.dedoa.ui
 
+import com.radixpro.enigma.libfe.texts.Rosetta
 import javafx.stage.Modality
 import javafx.stage.Stage
 

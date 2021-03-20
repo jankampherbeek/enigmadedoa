@@ -24,6 +24,8 @@ import javafx.scene.text.TextAlignment
 import javafx.stage.Modality
 import javafx.stage.Stage
 
+import com.radixpro.enigma.libfe.texts.Rosetta
+
 
 class Dashboard(private val calculationScreen: CalculationScreen,
                 private val comparisonScreen: ComparisonScreen,
@@ -197,7 +199,7 @@ class Dashboard(private val calculationScreen: CalculationScreen,
 
     private fun onLanguage() {
         stage.close()
-        Rosetta.changeLanguage()
+//        Rosetta.changeLanguage()
         show()
     }
 

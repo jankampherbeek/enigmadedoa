@@ -9,7 +9,6 @@
 package com.radixpro.enigma.dedoa.calc
 
 import com.radixpro.enigma.dedoa.core.SePositionResult
-import org.slf4j.LoggerFactory
 import swisseph.SweDate
 import swisseph.SwissEph
 
@@ -19,9 +18,8 @@ import swisseph.SwissEph
  */
 object SeFrontend {
     private const val SE_LOCATION = "./se"
-    private val log = LoggerFactory.getLogger(SeFrontend::class.java)
+//    private val log = LoggerFactory.getLogger(SeFrontend::class.java)
     private val swissEph = SwissEph(SE_LOCATION)
-
 
     /**
      * Returns TRUE if a date is valid, otherwise FALSE. Use only Gregorian calendar.

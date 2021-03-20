@@ -8,6 +8,7 @@
 
 package com.radixpro.enigma.dedoa.ui
 
+import com.radixpro.enigma.libfe.texts.Rosetta
 import javafx.event.EventHandler
 import javafx.geometry.Insets
 import javafx.geometry.Pos

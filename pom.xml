@@ -29,12 +29,24 @@
         <javafx.version>14.0.1</javafx.version>
         <junit.version>4.12</junit.version>
         <kotlin.version>1.4.21</kotlin.version>
+        <libbe.version>0.1</libbe.version>
+        <libfe.version>0.0</libfe.version>
         <mack.version>2.01.00-02</mack.version>
         <maven.compiler.release>14</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.5</slf4j.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.radixpro.enigma</groupId>
+            <artifactId>libbe</artifactId>
+            <version>${libbe.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.radixpro.enigma</groupId>
+            <artifactId>libfe</artifactId>
+            <version>${libfe.version}</version>
+        </dependency>
         <dependency>
             <groupId>de.th-mack</groupId>
             <artifactId>seport</artifactId>

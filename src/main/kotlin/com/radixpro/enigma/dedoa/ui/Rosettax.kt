@@ -12,7 +12,7 @@ import java.util.*
  * i18N manager, takes care of Resource Bundles and Locale's.<br></br>
  * Implemented as a singleton.
  */
-object Rosetta {
+object Rosettax {
 
     private const val RB_LOCATION = "texts"
     private const val RB_HELP_LOCATION = "help"
