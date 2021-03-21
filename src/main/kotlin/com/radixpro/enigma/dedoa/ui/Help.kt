@@ -8,6 +8,9 @@
 
 package com.radixpro.enigma.dedoa.ui
 
+import com.radixpro.enigma.libfe.fxbuilders.ButtonBuilder
+import com.radixpro.enigma.libfe.fxbuilders.LabelBuilder
+import com.radixpro.enigma.libfe.fxbuilders.PaneBuilder
 import com.radixpro.enigma.libfe.texts.Rosetta
 import javafx.event.EventHandler
 import javafx.geometry.Insets
@@ -68,11 +71,11 @@ class Help(private val title: String, private val content: String) {
     }
 
     private fun createTitlePane(): Pane {
-        return PaneBuilder().setHeight(heightTitle).setWidth(widthInner).setStyleClass("titlepane").setChildren(arrayOf(createLblHelpTitle())).build()
+        return PaneBuilder().setPrefHeight(heightTitle).setPrefWidth(widthInner).setStyleClass("titlepane").setChildren(arrayListOf(createLblHelpTitle())).build()
     }
 
     private fun createContentPane(): Pane {
-        return PaneBuilder().setWidth(widthInner).setHeight(400.0).setChildren(arrayOf(createContentWebView())).build()
+        return PaneBuilder().setPrefWidth(widthInner).setPrefHeight(400.0).setChildren(arrayListOf(createContentWebView())).build()
     }
 
     private fun createButtonBar(): ButtonBar {
@@ -92,7 +95,7 @@ class Help(private val title: String, private val content: String) {
     }
 
     private fun createCloseButton(): Button {
-        val button = ButtonBuilder(Rosetta.getText("shared.btn_close")).setDisabled(false).build()
+        val button = ButtonBuilder().setText(Rosetta.getText("shared.btn_close")).setDisabled(false).build()
         button.onAction = EventHandler { onClose() }
         return button
     }

@@ -8,6 +8,7 @@
 
 package com.radixpro.enigma.dedoa.ui
 
+import com.radixpro.enigma.libfe.fxbuilders.*
 import javafx.application.Platform
 import javafx.event.EventHandler
 import javafx.geometry.Pos
@@ -25,6 +26,7 @@ import javafx.stage.Modality
 import javafx.stage.Stage
 
 import com.radixpro.enigma.libfe.texts.Rosetta
+import javafx.geometry.Insets
 
 
 class Dashboard(private val calculationScreen: CalculationScreen,
@@ -104,13 +106,13 @@ class Dashboard(private val calculationScreen: CalculationScreen,
     }
 
     private fun defineButtons() {
-        btnCalc = ButtonBuilder(txtBtnCalc).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
-        btnCompare = ButtonBuilder(txtBtnCompare).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
-        btnFormulae = ButtonBuilder(txtBtnFormulae).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
-        btnEphemeris = ButtonBuilder(txtBtnEphemeris).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
-        btnExit = ButtonBuilder(txtBtnExit).setDisabled(false).setFocusTraversable(true).build()
-        btnHelp = ButtonBuilder(txtBtnHelp).setDisabled(false).setFocusTraversable(true).build()
-        btnLanguage = ButtonBuilder(txtBtnLanguage).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
+        btnCalc = ButtonBuilder().setText(txtBtnCalc).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
+        btnCompare = ButtonBuilder().setText(txtBtnCompare).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
+        btnFormulae = ButtonBuilder().setText(txtBtnFormulae).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
+        btnEphemeris = ButtonBuilder().setText(txtBtnEphemeris).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
+        btnExit = ButtonBuilder().setText(txtBtnExit).setDisabled(false).setFocusTraversable(true).build()
+        btnHelp = ButtonBuilder().setText(txtBtnHelp).setDisabled(false).setFocusTraversable(true).build()
+        btnLanguage = ButtonBuilder().setText(txtBtnLanguage).setDisabled(false).setFocusTraversable(true).setPrefWidth(btnWidth).build()
         btnLanguage.onAction = EventHandler { onLanguage() }
         btnExit.onAction = EventHandler { onExit() }
         btnHelp.onAction = EventHandler { onHelp() }
@@ -122,7 +124,7 @@ class Dashboard(private val calculationScreen: CalculationScreen,
 
 
     private fun createVBox(): VBox {
-        return VBoxBuilder().setPadding(GAP).setHeight(height + 2 * GAP).setWidth(width + 2 * GAP).setChildren(arrayOf(createGridPane())).build()
+        return VBoxBuilder().setPadding(Insets(GAP)).setPrefHeight(height + 2 * GAP).setPrefWidth(width + 2 * GAP).setChildren(arrayListOf(createGridPane())).build()
     }
 
     private fun createGridPane(): GridPane {
@@ -139,21 +141,21 @@ class Dashboard(private val calculationScreen: CalculationScreen,
         grid.add(btnFormulae, 2, 4, 1, 1)
         grid.add(lblEphemeris, 1, 5, 1, 1)
         grid.add(btnEphemeris, 2, 5, 1, 1)
-        grid.add(PaneBuilder().setHeight(24.0).build(), 0, 6, 3, 1)
+        grid.add(PaneBuilder().setPrefHeight(24.0).build(), 0, 6, 3, 1)
         grid.add(createBtnBar(), 0, 7, 3, 1)
         return grid
     }
 
     private fun createTitlePane(): Pane {
         val lblTitle = LabelBuilder().setText(txtTitle).setPrefWidth(width).setAlignment(Pos.CENTER).setStyleClass("titletext").build()
-        return PaneBuilder().setHeight(57.0).setWidth(width).setStyleClass("titlepane").setChildren(arrayOf(lblTitle)).build()
+        return PaneBuilder().setPrefHeight(57.0).setPrefWidth(width).setStyleClass("titlepane").setChildren(arrayListOf(lblTitle)).build()
     }
 
     private fun createInstructionPane(): Pane {
         val lblInstruction = LabelBuilder().setText(txtInstruct).setPrefWidth(width - 250.0).setAlignment(Pos.CENTER).build()
         lblInstruction.isWrapText = true
         lblInstruction.textAlignment = TextAlignment.CENTER
-        val pane = PaneBuilder().setHeight(100.0).setWidth(width - 250.0).setChildren(arrayOf(lblInstruction)).build()
+        val pane = PaneBuilder().setPrefHeight(100.0).setPrefWidth(width - 250.0).setChildren(arrayListOf(lblInstruction)).build()
         pane.style = "-fx-background-color: lightblue;"
         return pane
     }
@@ -162,7 +164,7 @@ class Dashboard(private val calculationScreen: CalculationScreen,
         val lblInfo = LabelBuilder().setText(txtInfo).setPrefWidth(200.0).setAlignment(Pos.CENTER).build()
         lblInfo.isWrapText = true
         lblInfo.textAlignment = TextAlignment.CENTER
-        return PaneBuilder().setWidth(250.0).setChildren(arrayOf(lblInfo)).build()
+        return PaneBuilder().setPrefWidth(250.0).setChildren(arrayListOf(lblInfo)).build()
     }
 
     private fun createImagePane(): Pane {
@@ -172,13 +174,13 @@ class Dashboard(private val calculationScreen: CalculationScreen,
         imageView.fitHeight = 86.0
         imageView.isPickOnBounds = true
         imageView.isPreserveRatio = true
-        val pane = PaneBuilder().setWidth(250.0).setHeight(100.0).build()
+        val pane = PaneBuilder().setPrefWidth(250.0).setPrefHeight(100.0).build()
         pane.children.add(imageView)
         return pane
     }
 
     private fun createBtnBar(): ButtonBar {
-        return ButtonBarBuilder().setButtons(arrayOf(btnLanguage, btnHelp, btnExit)).build()
+        return ButtonBarBuilder().setButtons(arrayListOf(btnLanguage, btnHelp, btnExit)).build()
     }
 
     private fun onCalculate() {
